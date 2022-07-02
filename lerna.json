@@ -1,0 +1,20 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "useNx": true,
+  "version": "independent",
+  "tagVersionPrefix": "",
+  "stream": true,
+  "hoist": true,
+  "command": {
+    "version": {
+      "allowBranch": "main",
+      "conventionalCommits": true,
+      "createRelease": "github",
+      "message": "chore(release): release [skip ci]",
+      "signGitCommit": true,
+      "signGitTag": true
+    }
+  }
+}
