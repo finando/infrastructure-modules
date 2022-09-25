@@ -3,7 +3,13 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
-    "lint": "terraform fmt -check -diff -recursive packages"
+    "lint": "terraform fmt -check -diff -recursive packages",
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
