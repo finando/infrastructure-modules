@@ -11,6 +11,7 @@
     "version": {
       "allowBranch": "master",
       "conventionalCommits": true,
+      "changelogPreset": "conventionalcommits",
       "createRelease": "github",
       "message": "chore(release): release [skip ci]"
     }
