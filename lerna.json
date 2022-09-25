@@ -12,9 +12,7 @@
       "allowBranch": "master",
       "conventionalCommits": true,
       "createRelease": "github",
-      "message": "chore(release): release [skip ci]",
-      "signGitCommit": true,
-      "signGitTag": true
+      "message": "chore(release): release [skip ci]"
     }
   }
 }
