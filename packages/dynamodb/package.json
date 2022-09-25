@@ -1,0 +1,6 @@
+{
+  "name": "dynamodb",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT"
+}
