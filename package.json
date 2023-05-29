@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package",
-  "name": "infrastructure-modules",
+  "name": "@finando/infrastructure-modules",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
