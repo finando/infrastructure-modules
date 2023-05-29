@@ -4,12 +4,7 @@
   "scripts": {
     "prepare": "husky install",
     "lint": "terraform fmt -check -diff -recursive packages",
-    "commit": "git-cz"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
+    "commit": "cz"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
