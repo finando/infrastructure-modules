@@ -34,6 +34,8 @@ module "ecr" {
   repository_name = each.value
   repository_type = "private"
 
+  repository_image_tag_mutability = "MUTABLE"
+
   repository_read_access_arns = [
     data.aws_iam_user.alzak.arn,
     data.aws_iam_user.github.arn
