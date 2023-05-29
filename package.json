@@ -1,5 +1,6 @@
 {
   "name": "infrastructure-modules",
+  "license": "UNLICENSED",
   "private": true,
   "scripts": {
     "prepare": "husky install",
