@@ -1,8 +1,23 @@
 {
   "$schema": "https://json.schemastore.org/package",
   "name": "@finando/infrastructure-modules",
+  "description": "A collection of reusable infrastructure modules.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:finando/infrastructure-modules.git"
+  },
+  "contributors": [
+    {
+      "name": "Alexander Zakharov (azaxarov)",
+      "email": "alexander.zakharov@finando.app"
+    }
+  ],
   "license": "UNLICENSED",
   "private": true,
+  "engines": {
+    "node": ">=18",
+    "npm": ">=9"
+  },
   "scripts": {
     "prepare": "husky install",
     "lint": "terraform fmt -check -diff -recursive packages",
