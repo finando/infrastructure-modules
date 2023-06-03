@@ -8,6 +8,9 @@ terraform {
 
 locals {
   region       = var.region.name
+  project_name = var.common.project.name
+  environment  = var.environment.name
+  namespace    = "${local.project_name}-${local.region}-${local.environment}"
   repositories = var.repositories
   tags         = merge(var.account.tags, var.region.tags, var.environment.tags)
 }
@@ -31,7 +34,7 @@ module "ecr" {
 
   for_each = local.repositories
 
-  repository_name = each.value
+  repository_name = "${local.namespace}-${each.value}"
   repository_type = "private"
 
   repository_image_tag_mutability = "MUTABLE"
