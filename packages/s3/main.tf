@@ -16,7 +16,7 @@ locals {
   static_website_s3_buckets = [
     {
       name   = "sso-web"
-      domain = local.environment_domain_name
+      domain = "id.${local.environment_domain_name}"
     }
   ]
   tags = merge(var.account.tags, var.region.tags, var.environment.tags)
