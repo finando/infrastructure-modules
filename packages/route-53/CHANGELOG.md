@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.0](https://github.com/finando/infrastructure-modules/compare/route-53@0.2.0...route-53@0.3.0) (2023-06-24)
+
+
+### Features
+
+* **route-53:** add NS record for each subdomain to main hosted zone ([424648d](https://github.com/finando/infrastructure-modules/commit/424648d44441a60ec16c31368a75601946fb6ad7))
+
+
+
 ## [0.2.0](https://github.com/finando/infrastructure-modules/compare/route-53@0.1.1...route-53@0.2.0) (2023-06-24)
 
 
