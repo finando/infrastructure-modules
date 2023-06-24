@@ -24,3 +24,17 @@ resource "aws_route53_zone" "this" {
 
   tags = local.tags
 }
+
+data "aws_route53_zone" "production_route53_zone" {
+  name = local.domain_name
+}
+
+resource "aws_route53_record" "subdomain_ns_record" {
+  count = local.environment == "production" ? 0 : 1
+
+  zone_id = data.aws_route53_zone.production_route53_zone.zone_id
+  name    = aws_route53_zone.this.name
+  type    = "NS"
+  ttl     = "600"
+  records = aws_route53_zone.this.name_servers
+}
