@@ -43,6 +43,7 @@ module "acm" {
 
   subject_alternative_names = [
     "*.${local.environment_domain_name}",
+    "*id.${local.environment_domain_name}",
   ]
 
   wait_for_validation = true
