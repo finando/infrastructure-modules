@@ -75,6 +75,9 @@ module "s3_bucket_static_www_website" {
 
   acl = "private"
 
+  control_object_ownership = true
+  object_ownership         = "ObjectWriter"
+
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
@@ -99,6 +102,9 @@ module "s3_bucket_static_apex_website" {
   bucket = "${local.namespace}-apex-${each.value.name}"
 
   acl = "private"
+
+  control_object_ownership = true
+  object_ownership         = "ObjectWriter"
 
   block_public_acls       = true
   block_public_policy     = true
