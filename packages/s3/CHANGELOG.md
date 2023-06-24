@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.0](https://github.com/finando/infrastructure-modules/compare/s3@0.1.0...s3@0.2.0) (2023-06-24)
+
+
+### Features
+
+* **s3:** change domain name for sso-web application ([237e09a](https://github.com/finando/infrastructure-modules/commit/237e09a84a72ac40519809bec5d19eb298921672))
+
+
+
 ## 0.1.0 (2023-06-19)
 
 
