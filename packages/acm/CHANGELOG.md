@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.0](https://github.com/finando/infrastructure-modules/compare/acm@0.1.0...acm@0.2.0) (2023-06-24)
+
+
+### Features
+
+* **acm:** add alternative domain name ([dd519e1](https://github.com/finando/infrastructure-modules/commit/dd519e16d5adc334be0aad7a9727071e8f74d18f))
+
+
+
 ## 0.1.0 (2023-06-24)
 
 
