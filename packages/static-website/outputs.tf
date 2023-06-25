@@ -61,5 +61,5 @@ output "static_www_website_cloudfront_distribution_record_fqdn" {
 
 output "static_www_website_acm_certificate_arn" {
   description = "The ARN of the certificate"
-  value       = module.acm.acm_certificate_arn
+  value       = { for website in local.static_websites : website.name => module.acm[website.name].acm_certificate_arn }
 }
