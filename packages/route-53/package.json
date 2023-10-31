@@ -1,6 +1,6 @@
 {
   "name": "route-53",
   "version": "0.3.0",
-  "private": true,
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "private": true
 }
