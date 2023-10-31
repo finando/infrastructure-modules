@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.0](https://github.com/finando/infrastructure-modules/compare/ecr@0.3.0...ecr@0.4.0) (2023-10-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **ecr:** change input variables
+
+### Features
+
+* **ecr:** add outputs ([f467765](https://github.com/finando/infrastructure-modules/commit/f467765cd1cf476c1f9d060943e8e5f3d2b3c94c))
+* **ecr:** change input variables ([ac91226](https://github.com/finando/infrastructure-modules/commit/ac9122624524365e1348c238210c6080b13d04c0))
+
+
+### Bug Fixes
+
+* **project:** lint errors ([8ec0766](https://github.com/finando/infrastructure-modules/commit/8ec0766cb3ee1c4624810931bec73c2b4bd45171))
+
+
+
 ## [0.3.0](https://github.com/finando/infrastructure-modules/compare/ecr@0.2.1...ecr@0.3.0) (2023-06-03)
 
 

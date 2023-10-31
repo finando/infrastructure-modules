@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.0](https://github.com/finando/infrastructure-modules/compare/route-53@0.3.0...route-53@0.4.0) (2023-10-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **route-53:** change input variables
+
+### Features
+
+* **route-53:** add TXT DNS record for GitHub Pages ([0ce4eae](https://github.com/finando/infrastructure-modules/commit/0ce4eae7e11fd581f000b077c063be3a2d397741))
+* **route-53:** change input variables ([2bb987d](https://github.com/finando/infrastructure-modules/commit/2bb987da0a1e1f4dc9efd12ae1f61905de3cc0f9))
+
+
+### Bug Fixes
+
+* **project:** lint errors ([8ec0766](https://github.com/finando/infrastructure-modules/commit/8ec0766cb3ee1c4624810931bec73c2b4bd45171))
+
+
+
 ## [0.3.0](https://github.com/finando/infrastructure-modules/compare/route-53@0.2.0...route-53@0.3.0) (2023-06-24)
 
 
