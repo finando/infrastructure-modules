@@ -1,0 +1,4 @@
+{
+  "*.tf": "terraform fmt",
+  "*.json": "npm run lint:eslint:staged:fix"
+}

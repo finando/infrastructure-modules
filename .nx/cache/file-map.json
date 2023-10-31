@@ -1,0 +1,348 @@
+{
+  "version": "6.0",
+  "nxVersion": "17.0.2",
+  "deps": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "commitizen": "^4.3.0",
+    "conventional-changelog-conventionalcommits": "^6.1.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.49.0",
+    "eslint-plugin-json-format": "^2.0.1",
+    "husky": "^8.0.3",
+    "lerna": "^7.3.0",
+    "lint-staged": "^14.0.1",
+    "npm-run-all": "^4.1.5",
+    "nx": "^16.8.1"
+  },
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {
+      "dynamodb": [
+        {
+          "file": "packages/dynamodb/CHANGELOG.md",
+          "hash": "14814649577649086473"
+        },
+        {
+          "file": "packages/dynamodb/main.tf",
+          "hash": "3997241764921328818"
+        },
+        {
+          "file": "packages/dynamodb/outputs.tf",
+          "hash": "5203953448570566939"
+        },
+        {
+          "file": "packages/dynamodb/package.json",
+          "hash": "10026999742504010501"
+        },
+        {
+          "file": "packages/dynamodb/variables.tf",
+          "hash": "17350944867281910678"
+        }
+      ],
+      "static-website": [
+        {
+          "file": "packages/static-website/CHANGELOG.md",
+          "hash": "12734675949587771073"
+        },
+        {
+          "file": "packages/static-website/main.tf",
+          "hash": "17688986259981539142"
+        },
+        {
+          "file": "packages/static-website/outputs.tf",
+          "hash": "11757445888709700030"
+        },
+        {
+          "file": "packages/static-website/package.json",
+          "hash": "9861233045546730706"
+        },
+        {
+          "file": "packages/static-website/variables.tf",
+          "hash": "3536051583897510046"
+        }
+      ],
+      "ecr": [
+        {
+          "file": "packages/ecr/CHANGELOG.md",
+          "hash": "13893012194214007315"
+        },
+        {
+          "file": "packages/ecr/main.tf",
+          "hash": "2788603890703968457"
+        },
+        {
+          "file": "packages/ecr/outputs.tf",
+          "hash": "7538177496905977037"
+        },
+        {
+          "file": "packages/ecr/package.json",
+          "hash": "5683575599613896718"
+        },
+        {
+          "file": "packages/ecr/variables.tf",
+          "hash": "14984874723192027724"
+        }
+      ],
+      "ses": [
+        {
+          "file": "packages/ses/CHANGELOG.md",
+          "hash": "8297733491427138578"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/.eslintignore",
+          "hash": "14304857033957751261"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/.eslintrc.json",
+          "hash": "14028624491148991110"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/.gitignore",
+          "hash": "13530419241823589487"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/package-lock.json",
+          "hash": "3539044889771185462"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/package.json",
+          "hash": "3183279279745140827"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/context.ts",
+          "hash": "10633185581305742327"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/env.ts",
+          "hash": "5480535323766244217"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/index.ts",
+          "hash": "2335782292125080434"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/services/email-forward-mapping-parser/index.ts",
+          "hash": "5793062384543280461"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/services/event-parser/index.ts",
+          "hash": "7868605567436941673"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/services/recipient-transformer/index.ts",
+          "hash": "10038706649734564550"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/services/s3/index.ts",
+          "hash": "16277855092913516327"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/services/ses/index.ts",
+          "hash": "30619296758810505"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/types/context.d.ts",
+          "hash": "8759347414306972183"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/types/domain.d.ts",
+          "hash": "173067529915541884"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/types/env.d.ts",
+          "hash": "969505001904603230"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/types/index.d.ts",
+          "hash": "13317711428809090858"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/utils/common/index.ts",
+          "hash": "14188496953279619441"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/utils/logging/index.ts",
+          "hash": "7782961065459111633"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/utils/logging/types.d.ts",
+          "hash": "4298983046164807093"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/src/utils/service/index.ts",
+          "hash": "17589257009296600362"
+        },
+        {
+          "file": "packages/ses/email-forwarder-lambda/tsconfig.json",
+          "hash": "4505598310211632088"
+        },
+        {
+          "file": "packages/ses/main.tf",
+          "hash": "4451585417472830640"
+        },
+        {
+          "file": "packages/ses/outputs.tf",
+          "hash": "4055606894390288348"
+        },
+        {
+          "file": "packages/ses/package.json",
+          "hash": "7500679898580300187"
+        },
+        {
+          "file": "packages/ses/variables.tf",
+          "hash": "14417315758262281067"
+        }
+      ],
+      "route-53": [
+        {
+          "file": "packages/route-53/CHANGELOG.md",
+          "hash": "3558348790482502495"
+        },
+        {
+          "file": "packages/route-53/main.tf",
+          "hash": "74073019878206227"
+        },
+        {
+          "file": "packages/route-53/outputs.tf",
+          "hash": "8457684480237942892"
+        },
+        {
+          "file": "packages/route-53/package.json",
+          "hash": "7375629607401621865"
+        },
+        {
+          "file": "packages/route-53/variables.tf",
+          "hash": "17350944867281910678"
+        }
+      ],
+      "cognito": [
+        {
+          "file": "packages/cognito/CHANGELOG.md",
+          "hash": "2683581452682348760"
+        },
+        {
+          "file": "packages/cognito/main.tf",
+          "hash": "4261388348514025974"
+        },
+        {
+          "file": "packages/cognito/outputs.tf",
+          "hash": "4660249521896975888"
+        },
+        {
+          "file": "packages/cognito/package.json",
+          "hash": "16663242842776372336"
+        },
+        {
+          "file": "packages/cognito/variables.tf",
+          "hash": "17350944867281910678"
+        }
+      ],
+      "secrets-manager": [
+        {
+          "file": "packages/secrets-manager/CHANGELOG.md",
+          "hash": "5221667194515161409"
+        },
+        {
+          "file": "packages/secrets-manager/main.tf",
+          "hash": "6240190786638518828"
+        },
+        {
+          "file": "packages/secrets-manager/outputs.tf",
+          "hash": "4055606894390288348"
+        },
+        {
+          "file": "packages/secrets-manager/package.json",
+          "hash": "17419636065900908901"
+        },
+        {
+          "file": "packages/secrets-manager/variables.tf",
+          "hash": "7000183767378262338"
+        }
+      ]
+    },
+    "nonProjectFiles": [
+      {
+        "file": ".commitlintrc.json",
+        "hash": "18071395068477958388"
+      },
+      {
+        "file": ".cz.json",
+        "hash": "7288922025396554187"
+      },
+      {
+        "file": ".editorconfig",
+        "hash": "14777742746065858732"
+      },
+      {
+        "file": ".eslintignore",
+        "hash": "6233290892653250285"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "9731190545176435208"
+      },
+      {
+        "file": ".github/workflows/check.yaml",
+        "hash": "16325927954539429482"
+      },
+      {
+        "file": ".github/workflows/release.yaml",
+        "hash": "14519289364024860071"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "6411509690016161080"
+      },
+      {
+        "file": ".husky/commit-msg",
+        "hash": "3449592750190291184"
+      },
+      {
+        "file": ".husky/pre-commit",
+        "hash": "16697367285325791934"
+      },
+      {
+        "file": ".husky/pre-push",
+        "hash": "15290270030906390646"
+      },
+      {
+        "file": ".lintstagedrc.json",
+        "hash": "1482788371639427129"
+      },
+      {
+        "file": ".vscode/launch.json",
+        "hash": "16837840898529579372"
+      },
+      {
+        "file": ".vscode/ses-event.json",
+        "hash": "10211100500535436989"
+      },
+      {
+        "file": "LICENSE",
+        "hash": "9898171232305926205"
+      },
+      {
+        "file": "README.md",
+        "hash": "5820001192676586360"
+      },
+      {
+        "file": "lerna.json",
+        "hash": "16245458055951421465"
+      },
+      {
+        "file": "nx.json",
+        "hash": "17749602583569891347"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "17582273123170788315"
+      },
+      {
+        "file": "package.json",
+        "hash": "14437855205403483715"
+      }
+    ]
+  }
+}

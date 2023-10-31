@@ -1,14 +1,14 @@
 {
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "packages": [
     "packages/*"
   ],
-  "useNx": true,
   "version": "independent",
   "tagVersionPrefix": "",
   "stream": true,
-  "hoist": true,
   "command": {
     "version": {
+      "private": true,
       "allowBranch": "master",
       "conventionalCommits": true,
       "changelogPreset": "conventionalcommits",

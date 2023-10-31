@@ -29,11 +29,6 @@ npm install
 npm run prepare
 ```
 
-#### Step 3 - Bootstrap project
-```sh
-npx lerna bootstrap
-```
-
 ### Implementing changes
 
 In order to implement changes, create a branch from `master` branch, commit changes and open a pull request. Use [atomic](https://en.wikipedia.org/wiki/Atomic_commit) [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to add changes to Git history. Use `npm run commit` to start an interactive wizard that helps with formatting commits according to specified standard.
