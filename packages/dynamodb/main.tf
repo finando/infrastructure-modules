@@ -7,11 +7,8 @@ terraform {
 }
 
 locals {
-  region       = var.region.name
-  project_name = var.common.project.name
-  environment  = var.environment.name
-  namespace    = "${local.project_name}-${local.region}-${local.environment}"
-  tags         = merge(var.account.tags, var.region.tags, var.environment.tags)
+  namespace = var.namespace
+  tags      = var.tags
 }
 
 provider "aws" {}
