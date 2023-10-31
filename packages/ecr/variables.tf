@@ -15,7 +15,17 @@ variable "region" {
 
 variable "environment" {
   description = "Environment variables"
-  type        = object({ name = string, tags = map(string) })
+  type        = object({ name = string, project = map(string), tags = map(string) })
+}
+
+variable "namespace" {
+  description = "Unique namespace"
+  type        = string
+}
+
+variable "tags" {
+  description = "Tags"
+  type        = map(string)
 }
 
 variable "repositories" {
