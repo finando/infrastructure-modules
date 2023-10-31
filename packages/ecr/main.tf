@@ -49,3 +49,10 @@ module "ecr" {
 
   tags = local.tags
 }
+
+data "aws_ecr_image" "this" {
+  for_each = local.repositories
+
+  repository_name = "${local.namespace}-${each.value}"
+  image_tag       = "latest"
+}
