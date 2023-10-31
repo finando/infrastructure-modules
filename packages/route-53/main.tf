@@ -38,3 +38,13 @@ resource "aws_route53_record" "subdomain_ns_record" {
   ttl     = "600"
   records = aws_route53_zone.this.name_servers
 }
+
+resource "aws_route53_record" "github_pages_txt_record" {
+  count = local.environment == "production" ? 1 : 0
+
+  zone_id = data.aws_route53_zone.production_route53_zone.zone_id
+  name    = "${var.github_pages_txt_record_prefix}.${data.aws_route53_zone.production_route53_zone.name}"
+  type    = "TXT"
+  ttl     = "600"
+  records = [var.github_pages_txt_record_value]
+}
