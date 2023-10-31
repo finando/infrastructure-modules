@@ -37,3 +37,15 @@ variable "github_pages_txt_record_value" {
   description = "TXT DNS record value for GitHub Pages"
   type        = string
 }
+
+variable "dns_records" {
+  description = "A map of DNS record definitions"
+  type = map(object({
+    prefix  = string
+    type    = string
+    ttl     = string
+    records = list(string)
+  }))
+  default   = {}
+  sensitive = true
+}

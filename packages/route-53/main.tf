@@ -10,6 +10,7 @@ locals {
   environment             = var.environment.name
   root_domain_name        = var.common.project.domain_name
   environment_domain_name = var.environment.project.domain_name
+  dns_records             = var.dns_records
   tags                    = var.tags
 }
 
@@ -39,12 +40,12 @@ resource "aws_route53_record" "subdomain_ns_record" {
   records = aws_route53_zone.this.name_servers
 }
 
-resource "aws_route53_record" "github_pages_txt_record" {
-  count = local.environment == "production" ? 1 : 0
+resource "aws_route53_record" "dns_records" {
+  for_each = local.dns_records
 
   zone_id = data.aws_route53_zone.production_route53_zone.zone_id
-  name    = "${var.github_pages_txt_record_prefix}.${data.aws_route53_zone.production_route53_zone.name}"
-  type    = "TXT"
-  ttl     = "600"
-  records = [var.github_pages_txt_record_value]
+  name    = "${each.value.prefix}.${data.aws_route53_zone.production_route53_zone.name}"
+  type    = each.value.type
+  ttl     = each.value.ttl
+  records = each.value.records
 }
