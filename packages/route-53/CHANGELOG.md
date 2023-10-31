@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/finando/infrastructure-modules/compare/route-53@0.5.1...route-53@0.5.2) (2023-10-31)
+
+
+### Bug Fixes
+
+* **route-53:** remove sensitive flag ([cd23369](https://github.com/finando/infrastructure-modules/commit/cd233693001ea2b57f43f569630d4c08f85a0233))
+
+
+
 ## [0.5.1](https://github.com/finando/infrastructure-modules/compare/route-53@0.5.0...route-53@0.5.1) (2023-10-31)
 
 
