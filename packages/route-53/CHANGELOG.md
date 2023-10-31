@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.0](https://github.com/finando/infrastructure-modules/compare/route-53@0.4.0...route-53@0.5.0) (2023-10-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **route-53:** change inputs
+
+### Features
+
+* **route-53:** change inputs ([a16c480](https://github.com/finando/infrastructure-modules/commit/a16c480e6a34e42f21d939a5b321724659bb3caf))
+
+
+
 ## [0.4.0](https://github.com/finando/infrastructure-modules/compare/route-53@0.3.0...route-53@0.4.0) (2023-10-31)
 
 
