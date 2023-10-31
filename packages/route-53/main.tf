@@ -8,9 +8,9 @@ terraform {
 
 locals {
   environment             = var.environment.name
-  domain_name             = var.common.project.domain_name
-  environment_domain_name = local.environment == "production" ? local.domain_name : "${local.environment}.${local.domain_name}"
-  tags                    = merge(var.account.tags, var.region.tags, var.environment.tags)
+  root_domain_name        = var.common.project.domain_name
+  environment_domain_name = var.environment.project.domain_name
+  tags                    = var.tags
 }
 
 provider "aws" {}
@@ -26,7 +26,7 @@ resource "aws_route53_zone" "this" {
 }
 
 data "aws_route53_zone" "production_route53_zone" {
-  name = local.domain_name
+  name = local.root_domain_name
 }
 
 resource "aws_route53_record" "subdomain_ns_record" {
