@@ -7,13 +7,9 @@ terraform {
 }
 
 locals {
-  region                  = var.region.name
-  project_name            = var.common.project.name
-  environment             = var.environment.name
-  domain_name             = var.common.project.domain_name
-  environment_domain_name = local.environment == "production" ? local.domain_name : "${local.environment}.${local.domain_name}"
-  namespace               = "${local.project_name}-${local.region}-${local.environment}"
-  tags                    = merge(var.account.tags, var.region.tags, var.environment.tags)
+  domain_name = var.environment.project.domain_name
+  namespace   = var.namespace
+  tags        = var.tags
 }
 
 provider "aws" {}
@@ -23,7 +19,7 @@ provider "aws" {}
 # ------------------------------------------------------------------------------
 
 data "aws_ses_domain_identity" "this" {
-  domain = local.environment_domain_name
+  domain = local.domain_name
 }
 
 resource "aws_cognito_user_pool" "this" {
@@ -58,7 +54,7 @@ resource "aws_cognito_user_pool" "this" {
 
   email_configuration {
     email_sending_account = "DEVELOPER"
-    from_email_address    = "Finando <accounts@${local.environment_domain_name}>"
+    from_email_address    = "Finando <accounts@${local.domain_name}>"
     source_arn            = data.aws_ses_domain_identity.this.arn
   }
 
