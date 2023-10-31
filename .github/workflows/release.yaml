@@ -44,6 +44,7 @@ jobs:
         uses: crazy-max/ghaction-import-gpg@v6
         if: ${{ fromJson(steps.changes.outputs.count) > 0 }}
         with:
+          trust_level: 5
           gpg_private_key: ${{ secrets.FINANDO_GITHUB_BOT_GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.FINANDO_GITHUB_BOT_GPG_PASSPHRASE }}
           git_config_global: true
