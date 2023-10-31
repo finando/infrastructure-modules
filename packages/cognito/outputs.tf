@@ -3,6 +3,11 @@ output "user_pool_id" {
   value       = aws_cognito_user_pool.this.id
 }
 
+output "user_pool_arn" {
+  description = "ARN of the user pool"
+  value       = aws_cognito_user_pool.this.arn
+}
+
 output "user_pool_endpoint" {
   description = "Endpoint name of the user pool"
   value       = aws_cognito_user_pool.this.endpoint
