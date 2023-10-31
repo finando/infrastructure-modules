@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/finando/infrastructure-modules/compare/route-53@0.5.0...route-53@0.5.1) (2023-10-31)
+
+
+### Bug Fixes
+
+* **route-53:** remove unused variables ([ec20a94](https://github.com/finando/infrastructure-modules/commit/ec20a947601ff325f0f92539086821ee1a9cc300))
+
+
+
 ## [0.5.0](https://github.com/finando/infrastructure-modules/compare/route-53@0.4.0...route-53@0.5.0) (2023-10-31)
 
 
