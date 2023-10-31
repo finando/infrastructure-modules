@@ -36,6 +36,5 @@ variable "dns_records" {
     ttl     = string
     records = list(string)
   }))
-  default   = {}
-  sensitive = true
+  default = {}
 }
