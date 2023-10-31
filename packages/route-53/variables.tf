@@ -28,16 +28,6 @@ variable "tags" {
   type        = map(string)
 }
 
-variable "github_pages_txt_record_prefix" {
-  description = "TXT DNS record prefix for GitHub Pages"
-  type        = string
-}
-
-variable "github_pages_txt_record_value" {
-  description = "TXT DNS record value for GitHub Pages"
-  type        = string
-}
-
 variable "dns_records" {
   description = "A map of DNS record definitions"
   type = map(object({
