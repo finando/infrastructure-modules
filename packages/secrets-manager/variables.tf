@@ -15,19 +15,20 @@ variable "region" {
 
 variable "environment" {
   description = "Environment variables"
-  type        = object({ name = string, tags = map(string) })
+  type        = object({ name = string, project = map(string), tags = map(string) })
 }
 
-variable "oidc_jwks_secret" {
-  description = "JWKS for OIDC auth server"
+variable "namespace" {
+  description = "Unique namespace"
   type        = string
-  nullable    = false
-  sensitive   = true
 }
 
-variable "oidc_cookie_keys_secret" {
-  description = "Cookie signing keys for OIDC auth server"
-  type        = string
-  nullable    = false
-  sensitive   = true
+variable "tags" {
+  description = "Tags"
+  type        = map(string)
+}
+
+variable "secrets" {
+  description = "List of secret definitions"
+  type        = list(object({ name = string, value = string }))
 }

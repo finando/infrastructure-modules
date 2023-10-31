@@ -7,11 +7,9 @@ terraform {
 }
 
 locals {
-  region       = var.region.name
-  project_name = var.common.project.name
-  environment  = var.environment.name
-  namespace    = "${local.project_name}-${local.region}-${local.environment}"
-  tags         = merge(var.account.tags, var.region.tags, var.environment.tags)
+  namespace = var.namespace
+  tags      = var.tags
+  secrets   = var.secrets
 }
 
 provider "aws" {}
@@ -20,24 +18,17 @@ provider "aws" {}
 # Module configuration
 # ------------------------------------------------------------------------------
 
-resource "aws_secretsmanager_secret" "oidc_jwks_secret" {
-  name = "${local.namespace}-oidc-jwks"
+resource "aws_secretsmanager_secret" "secret" {
+  for_each = { for secret in local.secrets : secret.name => secret }
+
+  name = "${local.namespace}-${each.key}"
 
   tags = local.tags
 }
 
-resource "aws_secretsmanager_secret_version" "oidc_jwks_secret_value" {
-  secret_id     = aws_secretsmanager_secret.oidc_jwks_secret.id
-  secret_string = var.oidc_jwks_secret
-}
+resource "aws_secretsmanager_secret_version" "secret_value" {
+  for_each = { for secret in local.secrets : secret.name => secret.value }
 
-resource "aws_secretsmanager_secret" "oidc_cookie_keys_secret" {
-  name = "${local.namespace}-oidc-cookie-keys"
-
-  tags = local.tags
-}
-
-resource "aws_secretsmanager_secret_version" "oidc_cookie_keys_secret_value" {
-  secret_id     = aws_secretsmanager_secret.oidc_cookie_keys_secret.id
-  secret_string = var.oidc_cookie_keys_secret
+  secret_id     = aws_secretsmanager_secret.secret[each.key].id
+  secret_string = each.value
 }
