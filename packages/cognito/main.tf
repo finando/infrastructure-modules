@@ -64,7 +64,7 @@ resource "aws_cognito_user_pool" "this" {
 
   verification_message_template {
     default_email_option = "CONFIRM_WITH_CODE"
-    email_subject        = "Account Verification"
+    email_subject        = "Account Verification | Finando"
     email_message        = "Your verification code is {####}."
   }
 
