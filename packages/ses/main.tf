@@ -8,14 +8,17 @@ terraform {
 
 locals {
   region                  = var.region.name
-  project_name            = var.common.project.name
-  environment             = var.environment.name
-  domain_name             = var.common.project.domain_name
-  environment_domain_name = local.environment == "production" ? local.domain_name : "${local.environment}.${local.domain_name}"
-  namespace               = "${local.project_name}-${local.region}-${local.environment}"
-  from_email              = var.from_email
-  forward_emails          = var.forward_emails
-  tags                    = merge(var.account.tags, var.region.tags, var.environment.tags)
+  root_domain_name        = var.common.project.domain_name
+  environment_domain_name = var.environment.project.domain_name
+  namespace               = var.namespace
+  ses_configuration       = jsondecode(data.aws_ssm_parameter.ses_configuration.value)
+  ses_smtp_users          = jsondecode(data.aws_ssm_parameter.ses_smtp_users.value)
+  from_email              = "${local.ses_configuration.fromUsername}@${local.environment_domain_name}"
+  email_forward_mapping   = local.ses_configuration.emailForwardMapping
+  forward_emails = {
+    for mapping in local.email_forward_mapping : "${mapping.sourceUsername}@${local.environment_domain_name}" => mapping.destinationEmails
+  }
+  tags = var.tags
 }
 
 provider "aws" {}
@@ -27,7 +30,15 @@ provider "aws" {}
 data "aws_caller_identity" "current" {}
 
 data "aws_route53_zone" "this" {
-  name = local.domain_name
+  name = local.root_domain_name
+}
+
+data "aws_ssm_parameter" "ses_configuration" {
+  name = var.ssm_parameter_ses_configuration
+}
+
+data "aws_ssm_parameter" "ses_smtp_users" {
+  name = var.ssm_parameter_ses_smtp_users
 }
 
 resource "aws_ses_domain_identity" "this" {
@@ -93,7 +104,7 @@ resource "aws_ses_active_receipt_rule_set" "this" {
 }
 
 resource "aws_ses_receipt_rule" "this" {
-  name          = "${local.namespace}-receipt-rule-store-and-forward"
+  name          = "${local.namespace}-receipt-rule"
   rule_set_name = aws_ses_receipt_rule_set.this.rule_set_name
   recipients    = keys(local.forward_emails)
   enabled       = true
@@ -224,4 +235,33 @@ data "aws_iam_policy_document" "lambda_read_from_s3_bucket" {
     actions   = ["ses:SendRawEmail"]
     resources = ["*"]
   }
+}
+
+resource "aws_iam_user" "smtp_user" {
+  count = length(local.ses_smtp_users)
+
+  name = local.ses_smtp_users[count.index]
+  tags = local.tags
+}
+
+data "aws_iam_policy_document" "send_mail" {
+  statement {
+    actions   = ["ses:SendRawEmail"]
+    resources = [aws_ses_domain_identity.this.arn]
+  }
+}
+
+resource "aws_iam_policy" "send_mail" {
+  count = length(local.ses_smtp_users)
+
+  name   = "${local.ses_smtp_users[count.index]}-send-mail"
+  policy = data.aws_iam_policy_document.send_mail.json
+  tags   = local.tags
+}
+
+resource "aws_iam_user_policy_attachment" "send_mail" {
+  count = length(local.ses_smtp_users)
+
+  policy_arn = aws_iam_policy.send_mail[count.index].arn
+  user       = aws_iam_user.smtp_user[count.index].name
 }
