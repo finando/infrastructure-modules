@@ -111,7 +111,7 @@ resource "aws_ses_receipt_rule" "this" {
   scan_enabled  = true
 
   s3_action {
-    bucket_name = aws_s3_bucket.inbound_emails.bucket
+    bucket_name = module.inbound_emails_s3_bucket.s3_bucket_id
     position    = 1
   }
 
@@ -122,7 +122,7 @@ resource "aws_ses_receipt_rule" "this" {
 
   depends_on = [
     aws_ses_receipt_rule_set.this,
-    aws_s3_bucket_policy.this
+    module.inbound_emails_s3_bucket
   ]
 }
 
@@ -139,7 +139,9 @@ data "aws_iam_policy_document" "ses_write_to_s3_bucket" {
 
     actions = ["s3:PutObject"]
 
-    resources = ["${aws_s3_bucket.inbound_emails.arn}/*"]
+    resources = [
+      "${module.inbound_emails_s3_bucket.s3_bucket_arn}/*",
+    ]
 
     condition {
       test     = "StringEquals"
@@ -149,32 +151,32 @@ data "aws_iam_policy_document" "ses_write_to_s3_bucket" {
   }
 }
 
-resource "aws_s3_bucket_policy" "this" {
-  bucket = aws_s3_bucket.inbound_emails.id
-  policy = data.aws_iam_policy_document.ses_write_to_s3_bucket.json
-}
+module "inbound_emails_s3_bucket" {
+  source = "terraform-aws-modules/s3-bucket/aws"
 
+  bucket = "${local.namespace}-inbound-emails"
 
-resource "aws_s3_bucket" "inbound_emails" {
-  bucket        = "${local.namespace}-inbound-emails"
-  force_destroy = false
+  acl = "private"
 
-  tags = local.tags
-}
+  control_object_ownership = true
+  object_ownership         = "ObjectWriter"
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
-  bucket = aws_s3_bucket.inbound_emails.bucket
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 
-  rule {
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
+  server_side_encryption_configuration = {
+    rule = {
+      apply_server_side_encryption_by_default = {
+        sse_algorithm = "AES256"
+      }
     }
   }
-}
 
-resource "aws_s3_bucket_acl" "this" {
-  bucket = aws_s3_bucket.inbound_emails.id
-  acl    = "private"
+  policy = data.aws_iam_policy_document.ses_write_to_s3_bucket.json
+
+  tags = local.tags
 }
 
 module "aws_lambda_ses_email_forwarder" {
@@ -201,7 +203,7 @@ module "aws_lambda_ses_email_forwarder" {
 
   environment_variables = {
     FROM_EMAIL_ADDRESS = local.from_email
-    BUCKET_NAME        = aws_s3_bucket.inbound_emails.bucket
+    BUCKET_NAME        = module.inbound_emails_s3_bucket.s3_bucket_id
     EMAIL_MAPPING      = jsonencode(local.forward_emails)
   }
 
@@ -223,10 +225,12 @@ resource "aws_lambda_permission" "allow_lambda_execution_from_ses" {
 
 data "aws_iam_policy_document" "lambda_read_from_s3_bucket" {
   statement {
-    sid       = "GiveAWSLambdaPermissionToReadEmail"
-    effect    = "Allow"
-    actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.inbound_emails.arn}/*"]
+    sid     = "GiveAWSLambdaPermissionToReadEmail"
+    effect  = "Allow"
+    actions = ["s3:GetObject"]
+    resources = [
+      "${module.inbound_emails_s3_bucket.s3_bucket_arn}/*",
+    ]
   }
 
   statement {
