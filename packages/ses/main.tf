@@ -8,7 +8,6 @@ terraform {
 
 locals {
   region                  = var.region.name
-  root_domain_name        = var.common.project.domain_name
   environment_domain_name = var.environment.project.domain_name
   namespace               = var.namespace
   ses_configuration       = jsondecode(data.aws_ssm_parameter.ses_configuration.value)
@@ -30,7 +29,7 @@ provider "aws" {}
 data "aws_caller_identity" "current" {}
 
 data "aws_route53_zone" "this" {
-  name = local.root_domain_name
+  name = local.environment_domain_name
 }
 
 data "aws_ssm_parameter" "ses_configuration" {
