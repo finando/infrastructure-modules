@@ -7,8 +7,8 @@ terraform {
 }
 
 locals {
-  namespace = var.namespace
-  tags      = var.tags
+  tags           = var.tags
+  ssm_parameters = var.ssm_parameters
 }
 
 provider "aws" {}
@@ -17,26 +17,13 @@ provider "aws" {}
 # Module configuration
 # ------------------------------------------------------------------------------
 
-resource "aws_ssm_parameter" "ses_configuration" {
-  name        = "${local.namespace}-ses-configuration"
-  description = "SES configuration parameters (formatted as JSON)"
-  type        = "SecureString"
-  value       = var.ses_configuration
+resource "aws_ssm_parameter" "this" {
+  for_each = nonsensitive(local.ssm_parameters)
 
-  lifecycle {
-    ignore_changes = [
-      value
-    ]
-  }
-
-  tags = local.tags
-}
-
-resource "aws_ssm_parameter" "ses_smtp_users" {
-  name        = "${local.namespace}-ses-smtp-users"
-  description = "An array of SES SMTP users (formatted as JSON)"
-  type        = "SecureString"
-  value       = var.ses_smtp_users
+  name        = each.value.name
+  description = each.value.description
+  type        = each.value.type
+  value       = each.value.value
 
   lifecycle {
     ignore_changes = [

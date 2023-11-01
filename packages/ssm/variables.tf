@@ -28,12 +28,14 @@ variable "tags" {
   type        = map(string)
 }
 
-variable "ses_configuration" {
-  description = "SES configuration parameters (formatted as JSON)"
-  type        = string
-}
-
-variable "ses_smtp_users" {
-  description = "An array of SES SMTP users (formatted as JSON)"
-  type        = string
+variable "ssm_parameters" {
+  description = "A map of SSM parameter definitions"
+  type = map(object({
+    name        = string
+    description = optional(string)
+    type        = string
+    value       = string
+  }))
+  default   = {}
+  sensitive = true
 }
