@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/finando/infrastructure-modules/compare/cognito@0.2.0...cognito@0.2.1) (2023-11-01)
+
+
+### Bug Fixes
+
+* **cognito:** use correct hosting zone ([054bee0](https://github.com/finando/infrastructure-modules/commit/054bee08f41bef5298d87ccf9b885884c49fc0c4))
+
+
+
 ## [0.2.0](https://github.com/finando/infrastructure-modules/compare/cognito@0.1.1...cognito@0.2.0) (2023-10-31)
 
 
