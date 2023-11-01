@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/finando/infrastructure-modules/compare/ses@0.2.1...ses@0.2.2) (2023-11-01)
+
+
+### Bug Fixes
+
+* **s3:** attach policy to S3 bucket ([3bfc624](https://github.com/finando/infrastructure-modules/commit/3bfc624758121874cb748bcfa7b4fdef63fa6c0f))
+
+
+
 ## [0.2.1](https://github.com/finando/infrastructure-modules/compare/ses@0.2.0...ses@0.2.1) (2023-11-01)
 
 
