@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/finando/infrastructure-modules/compare/ses@0.2.0...ses@0.2.1) (2023-11-01)
+
+
+### Bug Fixes
+
+* **ses:** use S3 bucket module ([fb046b9](https://github.com/finando/infrastructure-modules/commit/fb046b9041add9e5c4ee83a14618989656846120))
+
+
+
 ## [0.2.0](https://github.com/finando/infrastructure-modules/compare/ses@0.1.1...ses@0.2.0) (2023-10-31)
 
 
