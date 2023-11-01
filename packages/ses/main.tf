@@ -174,7 +174,8 @@ module "inbound_emails_s3_bucket" {
     }
   }
 
-  policy = data.aws_iam_policy_document.ses_write_to_s3_bucket.json
+  attach_policy = true
+  policy        = data.aws_iam_policy_document.ses_write_to_s3_bucket.json
 
   tags = local.tags
 }
