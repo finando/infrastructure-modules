@@ -181,7 +181,7 @@ module "cloudfront_www" {
   create_origin_access_control = true
 
   origin_access_control = {
-    ("${each.value.name}-s3-oac") = {
+    ("${local.namespace}-${each.value.name}-s3-oac") = {
       description      = ""
       origin_type      = "s3"
       signing_behavior = "always"
@@ -273,7 +273,7 @@ module "cloudfront_www" {
       for origin in try(each.value.s3_origins, []) : origin.id => {
         domain_name           = origin.domain_name
         origin_id             = origin.s3_bucket_id
-        origin_access_control = "${each.value.name}-s3-oac"
+        origin_access_control = "${local.namespace}-${each.value.name}-s3-oac"
       }
       if origin != null
     },
