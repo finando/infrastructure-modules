@@ -25,11 +25,5 @@ resource "aws_ssm_parameter" "this" {
   type        = each.value.type
   value       = each.value.value
 
-  lifecycle {
-    ignore_changes = [
-      value
-    ]
-  }
-
   tags = local.tags
 }
