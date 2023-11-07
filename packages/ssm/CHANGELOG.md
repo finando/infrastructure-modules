@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/finando/infrastructure-modules/compare/ssm@0.2.1...ssm@0.2.2) (2023-11-07)
+
+
+### Bug Fixes
+
+* **ssm:** do not ignore value changes ([074d943](https://github.com/finando/infrastructure-modules/commit/074d94385116eedd11ac80fec49ffa86873e86e0))
+
+
+
 ## [0.2.1](https://github.com/finando/infrastructure-modules/compare/ssm@0.2.0...ssm@0.2.1) (2023-11-01)
 
 
