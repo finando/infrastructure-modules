@@ -14,8 +14,3 @@ export interface ForwardEvent {
   source: EmailForwardingInformation['source'];
   destinations: EmailForwardingInformation['destinations'];
 }
-
-export interface EmailMessageParts {
-  head: string;
-  body: string;
-}

@@ -1,7 +1,9 @@
-import type { EmailMessageParts } from '@app/types';
+import { simpleParser } from 'mailparser';
+
 import { Service } from '@app/utils/service';
 
 import type { SES } from 'aws-sdk';
+import type { AddressObject } from 'mailparser';
 import type { Logger } from 'winston';
 
 class S3Service extends Service {
@@ -27,7 +29,7 @@ class S3Service extends Service {
           Source: source,
           Destinations: destinations,
           RawMessage: {
-            Data: this.processMessage(from, source, message)
+            Data: await this.processMessage(from, message)
           }
         })
         .promise();
@@ -44,59 +46,45 @@ class S3Service extends Service {
     }
   }
 
-  private processMessage(
-    from: string,
-    source: string,
-    message: string
-  ): string {
-    const { head, body } = this.splitMessageIntoHeadAndBody(message);
+  private async processMessage(from: string, message: string): Promise<string> {
+    const { headerLines, headers } = await simpleParser(message);
 
-    let processedHead = head;
+    const headersToRemove = [
+      'from',
+      'return-path',
+      'sender',
+      'message-id',
+      'dkim-signature'
+    ];
 
-    if (!/^reply-to:[\t ]?/im.test(processedHead)) {
-      const from =
-        processedHead.match(/^from:[\t ]?(.*(?:\r?\n\s+.*)*\r?\n)/im)?.[1] ??
-        '';
+    let processedMessage = headerLines
+      .filter(({ key }) => headersToRemove.includes(key))
+      .reduce(
+        (previous, current) =>
+          previous.includes(current.line)
+            ? previous
+                .split(current.line)
+                .map(value => value.trim())
+                .join('')
+            : previous,
+        message
+      );
 
-      if (from) {
-        processedHead = `${processedHead} Reply-To: ${from}`;
+    if (headers.has('from')) {
+      const { text } = headers.get('from') as AddressObject;
+
+      console.log(from);
+
+      if (!headers.has('reply-to')) {
+        processedMessage = `Reply-To: ${text}\n${processedMessage}`;
       }
+
+      processedMessage = `From: ${text
+        .replace(/<(.*)>/, `<${from}>`)
+        .trim()}\n${processedMessage}`;
     }
 
-    processedHead = processedHead.replace(
-      /^from:[\t ]?(.*(?:\r?\n\s+.*)*)/gim,
-      (_, header) => {
-        if (from) {
-          return `From: ${header.replace(/<(.*)>/, '').trim()} <${from}>`;
-        }
-
-        return `From: ${header
-          .replace('<', 'at ')
-          .replace('>', '')} <${source}>`;
-      }
-    );
-
-    processedHead = processedHead.replace(
-      /^return-path:[\t ]?(.*)\r?\n/gim,
-      ''
-    );
-    processedHead = processedHead.replace(/^sender:[\t ]?(.*)\r?\n/gim, '');
-    processedHead = processedHead.replace(/^message-id:[\t ]?(.*)\r?\n/gim, '');
-    processedHead = processedHead.replace(
-      /^dkim-signature:[\t ]?.*\r?\n(\s+.*\r?\n)*/gim,
-      ''
-    );
-
-    return processedHead + body;
-  }
-
-  private splitMessageIntoHeadAndBody(message: string): EmailMessageParts {
-    const parts = message.match(/^((?:.+\r?\n)*)(\r?\n(?:.*\s+)*)/m);
-
-    return {
-      head: parts?.[1] ?? message,
-      body: parts?.[2] ?? ''
-    };
+    return processedMessage;
   }
 }
 
