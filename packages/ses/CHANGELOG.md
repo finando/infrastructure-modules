@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/finando/infrastructure-modules/compare/ses@0.2.4...ses@0.2.5) (2023-11-08)
+
+
+### Bug Fixes
+
+* **ses:** join lines properly in email-forwarder-lambda ([948254c](https://github.com/finando/infrastructure-modules/commit/948254c27c026f4a088c81de14e371307d4e7cc9))
+
+
+
 ## [0.2.4](https://github.com/finando/infrastructure-modules/compare/ses@0.2.3...ses@0.2.4) (2023-11-07)
 
 
