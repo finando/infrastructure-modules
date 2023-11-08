@@ -65,15 +65,13 @@ class S3Service extends Service {
             ? previous
                 .split(current.line)
                 .map(value => value.trim())
-                .join('')
+                .join('\n')
             : previous,
         message
       );
 
     if (headers.has('from')) {
       const { text } = headers.get('from') as AddressObject;
-
-      console.log(from);
 
       if (!headers.has('reply-to')) {
         processedMessage = `Reply-To: ${text}\n${processedMessage}`;
